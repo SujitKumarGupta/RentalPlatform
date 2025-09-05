@@ -1,0 +1,117 @@
+body{
+    background-color:antiquewhite;
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+min-height: 100vh;
+ 
+}
+
+.container{
+    flex:1;
+}
+
+.navbar{
+    height: 5rem;
+}
+
+.fa-compass{
+    color:#fe424d;
+    font-size: 2rem;
+}
+.nav-link{
+    color: #0f0e0e !important;
+}
+
+.f-info-links a{
+ text-decoration: none;
+ color:#222222;
+}
+.f-info-links a:hover{
+    text-decoration: underline;
+}
+
+.f-info{
+    height:7rem;
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* align-content: space-between; */
+   
+    background-color: #ebebeb;
+
+}
+.f-info-social, .f-info-links,.f-info-brand{
+    width:100%;
+    display: flex;
+    align-items: center;
+   justify-content: center;
+}
+
+.f-info-social i{
+   margin-right: 1rem;
+   font-size: 1.2rem;
+}
+
+.listing-card{
+    border:none !important;
+    margin-bottom: 2rem;
+}
+.card-img-top{
+    border-radius:1rem !important;
+    width:100% !important;
+    object-fit: cover !important;
+}
+
+.card-body{
+    padding:0px !important;
+}
+
+.card-text p{
+    font-weight: 900 !important;
+}
+
+.listings-link{
+    text-decoration: none;
+}
+.card-img-overlay{
+    opacity:0;
+}
+.card-img-overlay:hover{
+    opacity: 0.2;
+    background-color: white;
+}
+
+.add-btn{
+    background-color: #fe424d !important;
+    border: none !important;
+}
+
+.show-image{
+    height: 30vh;
+}
+
+.btns{
+    display: flex;
+}
+
+.show-card{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+/* Remove underline from all anchor tags */
+ #filters a{
+    text-decoration: none;
+    color:#0f0e0e; /* This removes the underline */
+  }
+  
+  /* Add light red hover effect on anchor tags */
+  a:hover {
+    color: rgb(183, 44, 44); 
+    text-decoration: none;/* This changes the text color to light red on hover */
+  }
+ 

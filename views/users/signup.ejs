@@ -1,0 +1,57 @@
+<% layout("/layouts/boilerplates") %>
+<style>
+  @media (max-width: 767px) {
+    .signup-container {
+      width: 90%;
+      margin: 0 auto; /* Center the form on small screens */
+    }
+
+    h2 {
+      font-size: 1.5rem; /* Adjust heading size */
+      text-align: center; /* Center the title */
+    }
+
+    .form-control {
+      font-size: 0.9rem; /* Reduce placeholder and input text size */
+      padding: 0.5rem; /* Adjust padding for smaller inputs */
+    }
+
+    button {
+      font-size: 0.9rem; /* Adjust button text size */
+    }
+  }
+</style>
+
+<body>
+   <div class="row mt-5">
+    <!-- Title Section -->
+    <h2 class="col-12 text-center mb-4">SignUp on Wanderhome</h2>
+
+    <!-- Signup Form -->
+    <div class="col-6 offset-3 signup-container">
+        <form action="/signup" method="POST" class="needs-validation" novalidate>
+            <!-- Username Input -->
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" placeholder="Username" name="username" class="form-control" id="username" required>
+                <div class="valid-feedback">Username looks good!</div>
+            </div>
+
+            <!-- Email Input -->
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" placeholder="Email" name="email" class="form-control" required>
+            </div>
+
+            <!-- Password Input -->
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" placeholder="Password" name="password" class="form-control" required>
+            </div>
+
+            <!-- Submit Button -->
+            <button class="btn btn-success col-6 offset-3 mt-3">SignUp</button>
+        </form>
+    </div>
+   </div>
+</body>

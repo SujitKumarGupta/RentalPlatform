@@ -1,0 +1,143 @@
+<% layout("/layouts/boilerplates") %>
+
+<style>
+  /* Responsive adjustments for small screens */
+  @media (max-width: 767px) {
+    .show-card {
+      max-width: 90%; /* Ensure the card adapts to smaller screens */
+      margin: 0 auto;
+    }
+
+    .show-image {
+      width: 100%; /* Full width for images */
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .card-body {
+      text-align: center; /* Center text for small screens */
+    }
+
+    /* Centralize review section on small screens */
+    .review-section {
+      text-align: center; /* Center-align all text */
+    }
+
+    .review-section form {
+      display: inline-block; /* Center the form */
+      text-align: left; /* Keep form fields aligned */
+    }
+
+    .review-card {
+      margin: 0 auto; /* Center the review cards */
+      font-size: 12px; /* Make font size smaller for reviews */
+      width: 100% !important; /* Ensure the card takes full width */
+    }
+
+    /* Ensure review cards occupy full width and reduce margin in small screens */
+    .review-card.col-5 {
+      width: 100%; /* Full width for small screens */
+      margin-bottom: 10px; /* Space between cards */
+    }
+    .card-title {
+      font-size: medium;
+      font-weight: bold;
+    }
+   
+  }
+
+  /* Additional CSS for layout */
+  @media (max-width: 767px) {
+    .col-sm-8 {
+      width: 100%;  /* Make the column full width */
+    }
+    .offset-sm-2 {
+      margin-left: 16.66667%; /* Adjust the offset for small screens */
+    }
+  }
+</style>
+
+<body>
+  <div class="row mt-5">
+    <!-- Title Section -->
+    <div class="col-11 text-center mb-1">
+      <h3><%= listings.title %></h3>
+    </div>
+
+    <!-- Listing Card -->
+    <div class="col-12 col-md-6 offset-md-3 mb-3">
+      <div class="card mx-auto show-card listing-card">
+        <img src="<%= listings.image.url %>" class="card-img-top show-image" alt="listings">
+        <div class="card-body">
+          <p class="card-text"><i>Owned by <%= listings.owner.username %></i></p>
+          <p class="card-text"><%= listings.description %></p>
+          <p class="card-text">&#8377; <%= listings.price.toLocaleString("en-IN") %></p>
+          <p class="card-text"><%= listings.location %></p>
+          <p class="card-text"><%= listings.country %></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit and Delete Buttons -->
+    <% if (curuser && curuser._id.equals(listings.owner._id)) { %>
+      <div class="btns mb-5">
+        <a href="/listings/<%= listings._id %>/edit" class="btn btn-dark col-1 offset-3">Edit</a>
+        <form method="POST" action="/listings/<%= listings._id %>?_method=DELETE">
+          <button class="btn btn-dark add-btn offset-5">Delete</button>
+        </form>
+      </div>
+    <% } %>
+
+    <!-- Review Section -->
+    <div class="review-section col-8 offset-2 mb-3">
+      <hr>
+      <% if (curuser) { %>
+        <h4>Leave a Review</h4>
+        <form method="POST" action="/Listings/<%= listings._id %>/reviews" novalidate class="needs-validation">
+          <div class="mb-3 mt-3">
+            <label for="rating" class="form-label">Rating</label>
+            <fieldset class="starability-slot">
+              <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+              <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+              <label for="first-rate1" title="Terrible">1 star</label>
+              <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+              <label for="first-rate2" title="Not good">2 stars</label>
+              <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+              <label for="first-rate3" title="Average">3 stars</label>
+              <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+              <label for="first-rate4" title="Very good">4 stars</label>
+              <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+              <label for="first-rate5" title="Amazing">5 stars</label>
+            </fieldset>
+          </div>
+          <div class="mb-3 mt-3">
+            <label for="Comment" class="form-label">Comment</label>
+            <textarea id="comment" cols="25" rows="5" name="review[comment]" class="form-control" required></textarea>
+            <div class="invalid-feedback">Please add some comments for Review</div>
+          </div>
+          <button class="btn btn-outline-dark">Submit</button>
+        </form>
+      <% } %>
+      <hr>
+
+      <!-- All Reviews -->
+      <p><b>All Reviews</b></p>
+      <div class="row">
+        <% for (review of listings.reviews) { %>
+          <div class="card review-card col-5 mb-3 ms-3">
+            <div class="card-body">
+              <h5 class="card-title"><%= review.author.username %></h5>
+              <p class="starability-result card-text" data-rating="<%= review.rating %>">
+                <p class="card-text"><%= review.comment %></p>
+              </p>
+              <form action="/listings/<%= listings._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST" class="mb-3">
+                <button class="btn btn-sm btn-dark">Delete</button>
+              </form>
+            </div>
+          </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</body>

@@ -1,0 +1,57 @@
+<% layout("/layouts/boilerplates") %>
+<style>
+  /* Responsive adjustments for placeholders and layout */
+  @media (max-width: 767px) {
+    h2 {
+      font-size: 1.5rem; /* Adjust heading size for small screens */
+      text-align: center; /* Center the heading */
+    }
+    .col-5.offset-5,
+    .col-5.offset-3 {
+      width: 90%; /* Make the form occupy more space */
+      margin: 0 auto; /* Center the form on the page */
+    }
+    input::placeholder {
+      font-size: 0.9rem; /* Adjust placeholder font size for small screens */
+    }
+    .btn {
+      width: 100%; /* Make the button span the form width */
+      margin: 0; /* Center-align the button */
+    }
+  }
+</style>
+
+<body>
+  <div class="row mt-5">
+    <h2 class="col-11 text-center mb-5">Login</h2>
+    <div class="col-10 col-md-5 offset-1 offset-md-3">
+      <form action="/login" method="POST" class="needs-validation" novalidate>
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input
+            type="text"
+            placeholder="Enter your username"
+            name="username"
+            class="form-control"
+            id="username"
+            required
+          >
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            placeholder="Enter your password"
+            name="password"
+            class="form-control"
+            id="password"
+            required
+          >
+        </div>
+
+        <button class="btn btn-success col-6 offset-3 mt-3 ">Login</button>
+      </form>
+    </div>
+  </div>
+</body>
